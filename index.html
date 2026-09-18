@@ -37,7 +37,6 @@
     .headline p{margin:0;color:#e6f0e9c4;font-size:14px}
     .ground{position:absolute;bottom:-4%;left:-20%;width:140%;height:28%;border-radius:50% 50% 0 0;background:radial-gradient(ellipse at center,#4d6a32,#1a442c 48%,#0b2723 74%)}
     
-    /* Contenedor más grande para dar espacio a la nueva escala */
     .garden{position:absolute;z-index:2;bottom:-2%;left:50%;width:420px;height:520px;transform:translateX(-50%);display:flex;justify-content:center;align-items:flex-end;}
     
     .flower-container {
@@ -52,7 +51,6 @@
         transform-origin: bottom center; 
     }
 
-    /* NUEVA ANIMACIÓN ÉPICA LENTA: Dura 4 segundos */
     .app.reveal .flower-container {
         animation: appearCinematic 4s 0.2s cubic-bezier(0.25, 1, 0.35, 1) forwards, 
                    bounceFloat 4s 4.2s infinite ease-in-out;
@@ -71,12 +69,10 @@
         pointer-events: none;
     }
 
-    /* La luz acompaña la lentitud de la flor */
     .app.reveal .luz-fondo {
         animation: lightCinematic 4s 0.2s forwards, pulseLight 4s 4.2s infinite alternate ease-in-out;
     }
 
-    /* LA FLOR ES MUCHÍSIMO MÁS GRANDE */
     .image-flower {
         width: 350px; 
         max-width: 100%;
@@ -93,7 +89,6 @@
         transform: scale(1.03);
     }
 
-    /* EL TALLO ESCALADO A LA FLOR */
     .tallo {
         width: 250px; 
         height: 330px; 
@@ -111,7 +106,6 @@
     @keyframes float{50%{transform:translateY(-10px) rotate(1deg)}}
     @keyframes pulse{50%{opacity:.45}}
     
-    /* ANIMACIÓN CINEMATOGRÁFICA Y LENTA */
     @keyframes appearCinematic {
         0% { 
             opacity: 0; 
@@ -158,6 +152,11 @@
   <main class="app" id="app">
     <canvas id="stars"></canvas>
     
+    <!-- Etiqueta HTML nativa asegurada para Vercel y móviles -->
+    <audio id="musica-fondo" loop preload="auto">
+      <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
     <section class="home">
       <div class="intro">
         <div class="gift">
@@ -215,37 +214,37 @@
   </main>
   
   <script>
-    // ==========================================
-    // ⚙️ CONFIGURACIÓN DE TU MÚSICA DESDE JS
-    // ==========================================
-    const ARCHIVO_MUSICA = "videoplayback.m4a"; 
-    const VOLUMEN_MUSICA = 0.01; 
-    
-    const musicaFondo = new Audio(ARCHIVO_MUSICA);
-    musicaFondo.loop = true;
-    musicaFondo.volume = VOLUMEN_MUSICA;
-    // ==========================================
-
     const app = document.querySelector('#app');
     const magicFlower = document.querySelector('#magic-flower');
+    const musicaFondo = document.getElementById('musica-fondo');
     
-    document.querySelector('#open').onclick = () => {
-        app.classList.add('reveal');
-        
-        let playPromise = musicaFondo.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Música a la espera de interacción con la flor.");
-            });
+    // Configurar volumen
+    musicaFondo.volume = 0.01;
+
+    // Función segura para forzar reproducción
+    const intentarReproducir = () => {
+        if (musicaFondo.paused) {
+            musicaFondo.play().catch(e => console.warn("Esperando interacción táctil para reproducir."));
         }
     };
+
+    // 1. Al presionar el botón "Abrir regalo"
+    document.querySelector('#open').addEventListener('click', () => {
+        app.classList.add('reveal');
+        intentarReproducir();
+    });
     
-    document.querySelector('#restart').onclick = () => {
+    // 2. Desbloqueo global de emergencia (cualquier clic o toque en la pantalla inicia la música)
+    document.body.addEventListener('click', intentarReproducir, { once: true });
+    document.body.addEventListener('touchstart', intentarReproducir, { once: true });
+    
+    document.querySelector('#restart').addEventListener('click', () => {
         app.classList.remove('reveal');
         musicaFondo.pause();
         musicaFondo.currentTime = 0; 
-    };
+    });
     
+    // Partículas y canvas
     const stars = document.querySelector('#stars'), s = stars.getContext('2d'), 
           petals = document.querySelector('#petals'), p = petals.getContext('2d');
     let pts = [], bits = [];
@@ -267,12 +266,10 @@
     }
     draw();
     
-    magicFlower.onclick = (e) => {
+    // Al tocar la flor: baila, suelta chispas y fuerza el play de música
+    magicFlower.addEventListener('click', (e) => {
       e.stopPropagation(); 
-      
-      if (musicaFondo.paused) {
-          musicaFondo.play().catch(err => console.log("Verifica archivo de audio."));
-      }
+      intentarReproducir();
 
       magicFlower.classList.remove('dance-anim');
       void magicFlower.offsetWidth; 
@@ -289,7 +286,7 @@
               life: 1.5
           });
       }
-    };
+    });
   </script>
 </body>
 </html>
