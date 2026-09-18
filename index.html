@@ -1,17 +1,295 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Un regalo para ti</title><style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap');*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;overflow:hidden;background:#02080e;color:white;font-family:"DM Sans",sans-serif}.app{width:min(100vw,470px);height:min(100vh,880px);min-height:620px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 94%,#565a2f,#162d2d 35%,#061621 78%);box-shadow:0 20px 80px #000}@media(min-width:471px){.app{border:6px solid #172837;border-radius:28px}}canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.home,.scene{position:absolute;inset:0}.home{z-index:5;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 46%,#213d51,#081521 63%);transition:.8s}.intro{transform:translateY(-3vh)}.eyebrow,.headline small{color:#f9d66e;letter-spacing:3px;text-transform:uppercase;font-size:10px}.intro h1{font:700 clamp(37px,10vw,51px)/.98 "Playfair Display";margin:15px 20px 12px;text-shadow:0 3px 20px #000}.intro p{margin:0 0 30px;color:#dce7e6b8;font-size:14px}.gift{position:relative;width:158px;height:121px;margin:0 auto 28px;filter:drop-shadow(0 16px 13px #0008);animation:float 2.8s ease-in-out infinite}.box{position:absolute;left:10px;right:10px;bottom:0;height:82px;border-radius:6px 6px 16px 16px;background:linear-gradient(115deg,#d99124,#ffd85a 48%,#eaa52c)}.ribbon{position:absolute;left:67px;width:24px;height:100%;z-index:2;background:linear-gradient(90deg,#fef6c2,#fffdf3,#e7b836)}.lid{position:absolute;z-index:3;top:28px;left:0;width:158px;height:39px;border-radius:7px;background:linear-gradient(115deg,#e9a631,#ffe16b 50%,#dc8e24);transform-origin:16% 100%;transition:.8s cubic-bezier(.2,.9,.25,1.45)}.lid:after{content:"";position:absolute;left:67px;top:0;width:24px;height:100%;background:#fff6bf}.bow{position:absolute;z-index:4;top:3px;left:50%;width:65px;height:37px;transform:translateX(-50%)}.bow:before,.bow:after{content:"";position:absolute;top:0;width:37px;height:27px;border:8px solid #fff6bf;border-radius:80% 25% 80% 25%}.bow:before{left:0;transform:rotate(23deg)}.bow:after{right:0;transform:scaleX(-1) rotate(23deg)}button{font-family:"DM Sans";cursor:pointer}.open{border:0;border-radius:99px;padding:15px 24px;background:linear-gradient(130deg,#fff6b8,#f9c942);font-weight:700;font-size:15px;color:#17231e;box-shadow:0 12px 28px #0006}.scene{opacity:0;transform:scale(1.08);pointer-events:none;transition:opacity .9s .28s,transform 1.1s .28s}.app.reveal .home{opacity:0;transform:scale(1.1);pointer-events:none}.app.reveal .lid{opacity:0;transform:rotate(-36deg) translate(-16px,-10px)}.app.reveal .scene{opacity:1;transform:none;pointer-events:auto}
-.headline{position:absolute;z-index:4;top:8%;left:18px;right:18px;text-align:center}.headline h2{margin:12px 0;font:700 clamp(36px,9vw,48px)/.98 "Playfair Display";color:#fff5bf;text-shadow:0 0 24px #e9b6319c}.headline p{margin:0;color:#e6f0e9c4;font-size:14px}.ground{position:absolute;bottom:-4%;left:-20%;width:140%;height:28%;border-radius:50% 50% 0 0;background:radial-gradient(ellipse at center,#4d6a32,#1a442c 48%,#0b2723 74%)}.garden{position:absolute;z-index:2;bottom:5%;left:50%;width:360px;height:500px;transform:translateX(-50%);cursor:pointer}.flower{width:100%;height:100%;overflow:visible;opacity:0;transform-origin:51% 97%;filter:drop-shadow(0 0 12px #f8be3b88)}.app.reveal .flower{animation:rise 1.3s .25s cubic-bezier(.14,.9,.23,1.14) forwards,sway 4s 1.55s ease-in-out infinite}.petal{fill:url(#gold);stroke:#f3b22b;stroke-width:2;transform-box:fill-box;transform-origin:50% 72%;opacity:0}.app.reveal .petal{animation:unfold .7s forwards}.app.reveal .p1{animation-delay:.65s}.app.reveal .p2{animation-delay:.76s}.app.reveal .p3{animation-delay:.87s}.app.reveal .p4{animation-delay:.98s}.app.reveal .p5{animation-delay:1.09s}.app.reveal .p6{animation-delay:1.2s}.app.reveal .p7{animation-delay:1.31s}.app.reveal .p8{animation-delay:1.42s}.inner{fill:#62215e;stroke:#a84460;stroke-width:2;opacity:0}.app.reveal .inner,.app.reveal .filament{animation:fade .5s 1.5s forwards}.vein{fill:none;stroke:#ae6324;stroke-width:1.7;opacity:.42}.filament{fill:none;stroke:#ffdc53;stroke-width:4.5;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 4px #ffc42b)}.stem{fill:none;stroke:#123b29;stroke-width:15;stroke-linecap:round}.stemhi{fill:none;stroke:#4a9252;stroke-width:4;stroke-linecap:round}.leaf{fill:url(#leaf);stroke:#113b29;stroke-width:2}.leafline{fill:none;stroke:#c0d86f;stroke-width:1.3;opacity:.35}.spark{fill:#fff1a5}.app.touch .flower{animation:dance .8s ease-in-out}.app.touch .inner{filter:brightness(1.7) drop-shadow(0 0 14px #ffcf42)}.hint{position:absolute;z-index:4;bottom:4%;width:100%;text-align:center;color:#fff7c8d9;font-size:13px;animation:pulse 1.7s infinite}.restart{position:absolute;z-index:5;right:16px;top:17px;border:1px solid #ffffff2c;border-radius:99px;padding:8px 11px;color:#fff;background:#ffffff12;font-size:11px;backdrop-filter:blur(5px)}@keyframes float{50%{transform:translateY(-10px) rotate(1deg)}}@keyframes rise{from{opacity:0;transform:translateY(195px) scale(.52)}to{opacity:1;transform:none}}@keyframes unfold{from{opacity:0;transform:scale(.08) rotate(-18deg)}to{opacity:1;transform:none}}@keyframes fade{to{opacity:1}}@keyframes sway{50%{transform:rotate(1.8deg) translateY(-4px)}}@keyframes dance{25%{transform:rotate(-7deg) scale(1.025)}62%{transform:rotate(6deg) scale(1.012)}100%{transform:none}}@keyframes pulse{50%{opacity:.45}}
-</style></head><body><main class="app" id="app"><canvas id="stars"></canvas><section class="home"><div class="intro"><div class="gift"><div class="box"></div><div class="ribbon"></div><div class="lid"></div><div class="bow"></div></div><span class="eyebrow">un detalle especial</span><h1>Tengo algo<br>para vos</h1><p>Hecho con mucho cariño ✦</p><button class="open" id="open">Abrí tu regalo</button></div></section><section class="scene"><button class="restart" id="restart">↻ Repetir</button><div class="headline"><small>Para iluminar tu día</small><h2>Feliz día de las<br>Flores Amarillas</h2><p>Que nunca te falten razones para florecer.</p></div><div class="garden" id="garden"><svg class="flower" viewBox="0 0 360 500" role="img" aria-label="Flor de ocho pétalos"><defs><linearGradient id="gold" x1=".18" y1="0" x2=".82" y2="1"><stop stop-color="#fff7ac"/><stop offset=".3" stop-color="#ffdb4c"/><stop offset=".7" stop-color="#ee9820"/><stop offset="1" stop-color="#b95e1d"/></linearGradient><linearGradient id="leaf" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#79ad57"/><stop offset=".5" stop-color="#2f7041"/><stop offset="1" stop-color="#103827"/></linearGradient></defs><path class="stem" d="M187 474c-9-93 52-154-7-246"/><path class="stemhi" d="M188 470c-5-87 47-149-6-238"/><path class="leaf" d="M187 396c-58-39-105-18-125 32 53 11 98-5 125-32"/><path class="leafline" d="M72 420c42-5 76-15 105-30m-74 21-7-23m36 11-5-24m33 8-5-24"/><path class="leaf" d="M194 351c48-55 104-41 124-2-47 25-91 23-124 2"/><path class="leafline" d="M205 348c32-10 65-13 101-8m-67-4 3-23m27 16 8-20"/><path class="leaf" d="M187 447c-43-24-83-7-100 26 42 8 77-7 100-26"/><g><path class="petal p1" d="M180 229c-71 3-126-20-151-68 35-49 107-33 165 57Z"/><path class="petal p2" d="M180 227c-48-42-59-99-34-139 47 13 69 70 48 142Z"/><path class="petal p3" d="M184 226c-14-66 12-121 55-141 40 39 22 98-43 147Z"/><path class="petal p4" d="M187 229c35-60 87-85 133-59 2 52-51 84-125 70Z"/><path class="petal p5" d="M188 233c68-17 126 3 144 48-49 35-105 8-151-31Z"/><path class="petal p6" d="M183 236c57 24 79 72 56 115-53-1-79-52-64-109Z"/><path class="petal p7" d="M178 237c18 57-4 109-48 120-43-34-25-91 38-128Z"/><path class="petal p8" d="M174 234c-40 44-93 58-122 27 16-48 72-55 126-38Z"/></g><g class="vein"><path d="M41 166c54 20 94 41 136 62M148 101c14 47 23 85 32 123M238 102c-19 46-34 84-53 122M305 176c-43 28-77 42-119 54M323 274c-53-17-92-28-133-39M230 337c-22-40-36-70-47-101M142 338c12-42 23-72 35-103M64 275c45-18 77-29 111-38"/></g><g><path class="inner" d="M179 218c-25-31-48-31-58-18 14 25 33 34 57 36Z"/><path class="inner" d="M180 218c-9-35 6-53 21-52 9 25 6 47-15 64Z"/><path class="inner" d="M184 221c27-27 51-23 60-9-17 22-38 28-59 21Z"/><path class="inner" d="M181 226c-4 27-20 42-37 41-2-23 10-39 35-45Z"/></g><path class="filament" d="M179 229c-21-55-47-84-26-113 21-29 53 0 35 25-13 17-38-2-22-19M186 228c20-56 62-78 54-117-7-31-48-16-34 11 8 17 31 6 20-12M183 229c5-64-15-94 8-114 24-20 45 14 23 29-15 10-33-9-17-21"/><g><circle class="spark" cx="105" cy="177" r="2"/><circle class="spark" cx="126" cy="201" r="1.4"/><circle class="spark" cx="88" cy="207" r="1.5"/><circle class="spark" cx="246" cy="164" r="1.8"/><circle class="spark" cx="273" cy="197" r="1.5"/><circle class="spark" cx="286" cy="263" r="1.6"/><circle class="spark" cx="242" cy="294" r="1.4"/><circle class="spark" cx="162" cy="302" r="1.8"/><circle class="spark" cx="101" cy="272" r="1.4"/></g><circle cx="182" cy="229" r="6" fill="#fff18b"/><circle cx="182" cy="229" r="2.5" fill="#ffa926"/></svg></div><div class="ground"></div><div class="hint">Tocá la flor para verla bailar ✦</div></section><canvas id="petals"></canvas></main><script>
-const app=document.querySelector('#app'),garden=document.querySelector('#garden');document.querySelector('#open').onclick=()=>app.classList.add('reveal');document.querySelector('#restart').onclick=()=>app.classList.remove('reveal');const stars=document.querySelector('#stars'),s=stars.getContext('2d'),petals=document.querySelector('#petals'),p=petals.getContext('2d');let pts=[],bits=[];function fit(){[stars,petals].forEach(c=>{c.width=innerWidth;c.height=innerHeight});pts=Array.from({length:48},()=>({x:Math.random()*stars.width,y:Math.random()*stars.height,a:Math.random(),v:.004+Math.random()*.012,r:.4+Math.random()*1.6}))}fit();addEventListener('resize',fit);function draw(){s.clearRect(0,0,stars.width,stars.height);pts.forEach(q=>{q.a+=q.v;if(q.a>1||q.a<.2)q.v*=-1;s.beginPath();s.arc(q.x,q.y,q.r,0,7);s.fillStyle='rgba(255,250,205,'+q.a+')';s.fill()});p.clearRect(0,0,petals.width,petals.height);bits.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vy+=.018;b.r+=b.vr;b.life-=.012;p.save();p.translate(b.x,b.y);p.rotate(b.r);p.globalAlpha=Math.max(0,b.life);p.fillStyle='#ffe057';p.beginPath();p.ellipse(0,0,3.7,8,.5,0,7);p.fill();p.restore()});bits=bits.filter(b=>b.life>0);requestAnimationFrame(draw)}draw();garden.onclick=()=>{app.classList.remove('touch');void app.offsetWidth;app.classList.add('touch');for(let i=0;i<42;i++)bits.push({x:petals.width/2+(Math.random()-.5)*105,y:petals.height*.49,vx:(Math.random()-.5)*3.4,vy:-Math.random()*4.2-1,r:0,vr:(Math.random()-.5)*.23,life:1})};
-</script><script>garden.addEventListener('click',()=>{garden.querySelector('.flower').style.opacity='1'});</script></body></html>
-<script>
-// Variante ornamental inspirada en la referencia: pétalos ondulados, centro violeta y rizos dorados.
-const referenceFlower = '<svg class="flower" viewBox="0 0 360 500" role="img" aria-label="Flor ornamental amarilla"><defs><linearGradient id="refGold" x1=".1" y1=".1" x2=".9" y2=".9"><stop stop-color="#fff6a6"/><stop offset=".28" stop-color="#ffd33e"/><stop offset=".7" stop-color="#ef9419"/><stop offset="1" stop-color="#bd5e1b"/></linearGradient><linearGradient id="refLeaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#76ad55"/><stop offset=".5" stop-color="#2d7040"/><stop offset="1" stop-color="#103627"/></linearGradient><filter id="refGlow"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><path class="stem" d="M187 474c-7-96 42-160-5-246"/><path class="stemhi" d="M188 470c-4-89 36-151-5-238"/><path class="leaf" fill="url(#refLeaf)" d="M186 397c-60-40-111-17-129 31 54 12 102-4 129-31"/><path class="leafline" d="M71 420c39-6 75-15 107-31m-75 21-7-23m37 11-6-25m34 10-5-23"/><path class="leaf" fill="url(#refLeaf)" d="M193 353c46-57 103-45 126-4-45 27-91 25-126 4"/><path class="leafline" d="M207 348c33-11 67-14 102-8m-68-5 4-23m28 16 8-21"/><path class="leaf" fill="url(#refLeaf)" d="M186 447c-44-24-84-7-100 26 42 8 78-7 100-26"/><g filter="url(#refGlow)" fill="url(#refGold)" stroke="#f3b029" stroke-width="2"><path class="petal p1" d="M178 228C137 202 105 169 108 123c2-16 8-27 19-35 37 14 59 58 63 119l-6 20Z"/><path class="petal p2" d="M180 224C153 181 152 126 177 91c8-11 16-18 26-22 34 31 31 91-4 156Z"/><path class="petal p3" d="M185 226c19-52 58-96 100-100 11 19 10 37 1 55-17 36-53 61-104 68Z"/><path class="petal p4" d="M191 231c54-28 109-23 143 8-4 24-18 38-39 43-38 8-75-9-112-32Z"/><path class="petal p5" d="M188 238c50 12 78 46 77 82-1 18-9 31-24 40-38-12-60-51-61-105Z"/><path class="petal p6" d="M180 240c9 49-12 93-50 113-18-4-31-16-36-35 11-38 39-64 86-78Z"/><path class="petal p7" d="M174 236c-46 35-95 43-128 12-3-20 5-36 23-49 32-17 68-7 111 21Z"/></g><g class="vein" fill="none"><path d="M124 104c23 40 43 79 54 120M193 78c-7 48-10 93-10 145M280 137c-35 31-67 62-96 95M322 245c-49-13-90-16-133-10M244 341c-25-39-43-73-56-106M130 350c14-48 31-83 51-115M55 239c44-7 83-1 125 3"/><path d="M115 151c18 6 34 16 48 30M267 198c-20 9-42 18-64 27M99 276c25-16 49-25 73-31"/></g><g class="inner" fill="#62215e" stroke="#a84460" stroke-width="2"><path d="M179 224c-23-30-53-37-67-23 10 28 34 42 65 43Z"/><path d="M180 223c-5-42 10-70 29-72 13 31 4 61-21 82Z"/><path d="M185 226c34-31 66-27 76-8-22 28-49 36-77 26Z"/><path d="M181 233c2 35-17 58-41 57-7-27 8-50 40-65Z"/></g><g class="filament" fill="none" stroke="#ffdc53" stroke-width="5" stroke-linecap="round"><path d="M178 230c-24-55-58-75-52-111 4-25 36-29 43-6 6 20-19 30-28 13"/><path d="M184 228c7-62-17-102 7-127 17-18 41-2 38 16-3 19-29 18-30-1"/><path d="M185 230c26-46 67-62 70-97 3-29-34-32-39-9-4 17 20 23 27 6"/></g><g class="spark" fill="#fff1a5"><circle cx="120" cy="190" r="2"/><circle cx="139" cy="205" r="1.4"/><circle cx="226" cy="173" r="1.7"/><circle cx="249" cy="194" r="1.3"/><circle cx="274" cy="245" r="1.8"/><circle cx="229" cy="278" r="1.4"/><circle cx="122" cy="275" r="1.4"/></g><circle cx="181" cy="229" r="5.5" fill="#fff18b"/></svg>';
-garden.innerHTML = referenceFlower;
-</script>
-<script>
-const refGoldDef = garden.querySelector('#refGold');
-const refLeafDef = garden.querySelector('#refLeaf');
-if (refGoldDef) refGoldDef.id = 'gold';
-if (refLeafDef) refLeafDef.id = 'leaf';
-</script>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Un regalo para ti</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap');
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;overflow:hidden;background:#02080e;color:white;font-family:"DM Sans",sans-serif}
+    .app{width:min(100vw,470px);height:min(100vh,880px);min-height:620px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 94%,#565a2f,#162d2d 35%,#061621 78%);box-shadow:0 20px 80px #000}
+    @media(min-width:471px){.app{border:6px solid #172837;border-radius:28px}}
+    canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+    .home,.scene{position:absolute;inset:0}
+    .home{z-index:5;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 46%,#213d51,#081521 63%);transition:.8s}
+    .intro{transform:translateY(-3vh)}
+    .eyebrow,.headline small{color:#f9d66e;letter-spacing:3px;text-transform:uppercase;font-size:10px}
+    .intro h1{font:700 clamp(37px,10vw,51px)/.98 "Playfair Display";margin:15px 20px 12px;text-shadow:0 3px 20px #000}
+    .intro p{margin:0 0 30px;color:#dce7e6b8;font-size:14px}
+    .gift{position:relative;width:158px;height:121px;margin:0 auto 28px;filter:drop-shadow(0 16px 13px #0008);animation:float 2.8s ease-in-out infinite}
+    .box{position:absolute;left:10px;right:10px;bottom:0;height:82px;border-radius:6px 6px 16px 16px;background:linear-gradient(115deg,#d99124,#ffd85a 48%,#eaa52c)}
+    .ribbon{position:absolute;left:67px;width:24px;height:100%;z-index:2;background:linear-gradient(90deg,#fef6c2,#fffdf3,#e7b836)}
+    .lid{position:absolute;z-index:3;top:28px;left:0;width:158px;height:39px;border-radius:7px;background:linear-gradient(115deg,#e9a631,#ffe16b 50%,#dc8e24);transform-origin:16% 100%;transition:.8s cubic-bezier(.2,.9,.25,1.45)}
+    .lid:after{content:"";position:absolute;left:67px;top:0;width:24px;height:100%;background:#fff6bf}
+    .bow{position:absolute;z-index:4;top:3px;left:50%;width:65px;height:37px;transform:translateX(-50%)}
+    .bow:before,.bow:after{content:"";position:absolute;top:0;width:37px;height:27px;border:8px solid #fff6bf;border-radius:80% 25% 80% 25%}
+    .bow:before{left:0;transform:rotate(23deg)}
+    .bow:after{right:0;transform:scaleX(-1) rotate(23deg)}
+    button{font-family:"DM Sans";cursor:pointer}
+    .open{border:0;border-radius:99px;padding:15px 24px;background:linear-gradient(130deg,#fff6b8,#f9c942);font-weight:700;font-size:15px;color:#17231e;box-shadow:0 12px 28px #0006}
+    .scene{opacity:0;transform:scale(1.08);pointer-events:none;transition:opacity .9s .28s,transform 1.1s .28s}
+    .app.reveal .home{opacity:0;transform:scale(1.1);pointer-events:none}
+    .app.reveal .lid{opacity:0;transform:rotate(-36deg) translate(-16px,-10px)}
+    .app.reveal .scene{opacity:1;transform:none;pointer-events:auto}
+    .headline{position:absolute;z-index:4;top:4%;left:18px;right:18px;text-align:center}
+    .headline h2{margin:12px 0;font:700 clamp(36px,9vw,48px)/.98 "Playfair Display";color:#fff5bf;text-shadow:0 0 24px #e9b6319c}
+    .headline p{margin:0;color:#e6f0e9c4;font-size:14px}
+    .ground{position:absolute;bottom:-4%;left:-20%;width:140%;height:28%;border-radius:50% 50% 0 0;background:radial-gradient(ellipse at center,#4d6a32,#1a442c 48%,#0b2723 74%)}
+    
+    /* Contenedor más grande para dar espacio a la nueva escala */
+    .garden{position:absolute;z-index:2;bottom:-2%;left:50%;width:420px;height:520px;transform:translateX(-50%);display:flex;justify-content:center;align-items:flex-end;}
+    
+    .flower-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        opacity: 0;
+        transform-origin: bottom center; 
+    }
+
+    /* NUEVA ANIMACIÓN ÉPICA LENTA: Dura 4 segundos */
+    .app.reveal .flower-container {
+        animation: appearCinematic 4s 0.2s cubic-bezier(0.25, 1, 0.35, 1) forwards, 
+                   bounceFloat 4s 4.2s infinite ease-in-out;
+    }
+
+    .luz-fondo {
+        position: absolute;
+        bottom: 35%;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(circle, rgba(255, 230, 80, 0.8) 0%, rgba(255, 200, 0, 0) 70%);
+        border-radius: 50%;
+        z-index: 1;
+        filter: blur(35px);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* La luz acompaña la lentitud de la flor */
+    .app.reveal .luz-fondo {
+        animation: lightCinematic 4s 0.2s forwards, pulseLight 4s 4.2s infinite alternate ease-in-out;
+    }
+
+    /* LA FLOR ES MUCHÍSIMO MÁS GRANDE */
+    .image-flower {
+        width: 350px; 
+        max-width: 100%;
+        object-fit: contain;
+        z-index: 3;
+        position: relative;
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
+        margin-bottom: -95px; 
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .image-flower:hover {
+        transform: scale(1.03);
+    }
+
+    /* EL TALLO ESCALADO A LA FLOR */
+    .tallo {
+        width: 250px; 
+        height: 330px; 
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .dance-anim {
+        animation: flowerDance 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards !important;
+    }
+
+    .hint{position:absolute;z-index:4;bottom:4%;width:100%;text-align:center;color:#fff7c8d9;font-size:13px;animation:pulse 1.7s infinite; pointer-events:none;}
+    .restart{position:absolute;z-index:5;right:16px;top:17px;border:1px solid #ffffff2c;border-radius:99px;padding:8px 11px;color:#fff;background:#ffffff12;font-size:11px;backdrop-filter:blur(5px)}
+
+    @keyframes float{50%{transform:translateY(-10px) rotate(1deg)}}
+    @keyframes pulse{50%{opacity:.45}}
+    
+    /* ANIMACIÓN CINEMATOGRÁFICA Y LENTA */
+    @keyframes appearCinematic {
+        0% { 
+            opacity: 0; 
+            transform: translateY(150px) scale(0.6); 
+            filter: blur(20px) brightness(0.5);
+        }
+        40% {
+            opacity: 0.8;
+            transform: translateY(-10px) scale(1.05);
+            filter: blur(5px) brightness(1.3) drop-shadow(0 0 40px rgba(255, 230, 80, 1));
+        }
+        100% { 
+            opacity: 1; 
+            transform: translateY(0) scale(1); 
+            filter: blur(0px) brightness(1) drop-shadow(0 0 15px rgba(255, 215, 0, 0.7)); 
+        }
+    }
+
+    @keyframes lightCinematic {
+        0% { opacity: 0; transform: scale(0.5); }
+        40% { opacity: 0.9; transform: scale(1.2); }
+        100% { opacity: 0.5; transform: scale(1); }
+    }
+
+    @keyframes bounceFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulseLight {
+        0% { opacity: 0.4; transform: scale(0.9); }
+        100% { opacity: 0.7; transform: scale(1.1); }
+    }
+
+    @keyframes flowerDance {
+        0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7)); }
+        25% { transform: scale(1.08) rotate(-4deg); filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1)); }
+        50% { transform: scale(1.08) rotate(4deg); }
+        75% { transform: scale(1.03) rotate(-2deg); }
+    }
+  </style>
+</head>
+<body>
+  <main class="app" id="app">
+    <canvas id="stars"></canvas>
+    
+    <section class="home">
+      <div class="intro">
+        <div class="gift">
+          <div class="box"></div>
+          <div class="ribbon"></div>
+          <div class="lid"></div>
+          <div class="bow"></div>
+        </div>
+        <span class="eyebrow">un detalle especial</span>
+        <h1>Tengo algo<br>para vos</h1>
+        <p>Hecho con mucho cariño ✦</p>
+        <button class="open" id="open">Abrí tu regalo</button>
+      </div>
+    </section>
+    
+    <section class="scene">
+      <button class="restart" id="restart">↻ Repetir</button>
+      <div class="headline">
+        <small>Para iluminar tu día</small>
+        <h2>Feliz día de las<br>Flores Amarillas</h2>
+        <p>Que nunca te falten razones para florecer.</p>
+      </div>
+      
+      <div class="garden" id="garden">
+        <div class="flower-container" id="flower-container">
+          <div class="luz-fondo"></div>
+          
+          <img src="image_de7144.png" class="image-flower" id="magic-flower" alt="Flor Mágica Amarilla">
+          
+          <svg class="tallo" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                  <linearGradient id="talloGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#1B5E20" />
+                      <stop offset="50%" stop-color="#4CAF50" />
+                      <stop offset="100%" stop-color="#1B5E20" />
+                  </linearGradient>
+                  <linearGradient id="hojaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#66BB6A" />
+                      <stop offset="100%" stop-color="#1B5E20" />
+                  </linearGradient>
+              </defs>
+              <path d="M100,0 Q120,150 90,300" fill="none" stroke="url(#talloGrad)" stroke-width="12" stroke-linecap="round"/>
+              <path d="M105,100 C150,70 190,100 195,130 C160,145 125,130 105,100 Z" fill="url(#hojaGrad)" stroke="#145A14" stroke-width="2"/>
+              <path d="M105,100 C130,110 160,115 185,122" fill="none" stroke="#145A14" stroke-width="2"/>
+              <path d="M100,180 C50,150 10,180 5,210 C40,225 75,210 100,180 Z" fill="url(#hojaGrad)" stroke="#145A14" stroke-width="2"/>
+              <path d="M100,180 C75,190 45,195 20,202" fill="none" stroke="#145A14" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+      
+      <div class="ground"></div>
+      <div class="hint">Tocá la flor para hacer magia ✦</div>
+    </section>
+    <canvas id="petals"></canvas>
+  </main>
+  
+  <script>
+    // ==========================================
+    // ⚙️ CONFIGURACIÓN DE TU MÚSICA DESDE JS
+    // ==========================================
+    const ARCHIVO_MUSICA = "videoplayback.m4a"; 
+    const VOLUMEN_MUSICA = 0.01; 
+    
+    const musicaFondo = new Audio(ARCHIVO_MUSICA);
+    musicaFondo.loop = true;
+    musicaFondo.volume = VOLUMEN_MUSICA;
+    // ==========================================
+
+    const app = document.querySelector('#app');
+    const magicFlower = document.querySelector('#magic-flower');
+    
+    document.querySelector('#open').onclick = () => {
+        app.classList.add('reveal');
+        
+        let playPromise = musicaFondo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Música a la espera de interacción con la flor.");
+            });
+        }
+    };
+    
+    document.querySelector('#restart').onclick = () => {
+        app.classList.remove('reveal');
+        musicaFondo.pause();
+        musicaFondo.currentTime = 0; 
+    };
+    
+    const stars = document.querySelector('#stars'), s = stars.getContext('2d'), 
+          petals = document.querySelector('#petals'), p = petals.getContext('2d');
+    let pts = [], bits = [];
+    
+    function fit(){
+      [stars,petals].forEach(c=>{c.width=innerWidth;c.height=innerHeight});
+      pts=Array.from({length:48},()=>({x:Math.random()*stars.width,y:Math.random()*stars.height,a:Math.random(),v:.004+Math.random()*.012,r:.4+Math.random()*1.6}))
+    }
+    fit(); addEventListener('resize',fit);
+    
+    function draw(){
+      s.clearRect(0,0,stars.width,stars.height);
+      pts.forEach(q=>{q.a+=q.v;if(q.a>1||q.a<.2)q.v*=-1;s.beginPath();s.arc(q.x,q.y,q.r,0,7);s.fillStyle='rgba(255,250,205,'+q.a+')';s.fill()});
+      
+      p.clearRect(0,0,petals.width,petals.height);
+      bits.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vy+=.018;b.r+=b.vr;b.life-=.012;p.save();p.translate(b.x,b.y);p.rotate(b.r);p.globalAlpha=Math.max(0,b.life);p.fillStyle='#ffe057';p.beginPath();p.ellipse(0,0,3.7,8,.5,0,7);p.fill();p.restore()});
+      bits=bits.filter(b=>b.life>0);
+      requestAnimationFrame(draw);
+    }
+    draw();
+    
+    magicFlower.onclick = (e) => {
+      e.stopPropagation(); 
+      
+      if (musicaFondo.paused) {
+          musicaFondo.play().catch(err => console.log("Verifica archivo de audio."));
+      }
+
+      magicFlower.classList.remove('dance-anim');
+      void magicFlower.offsetWidth; 
+      magicFlower.classList.add('dance-anim');
+      
+      for(let i=0; i<80; i++) {
+          bits.push({
+              x: petals.width/2 + (Math.random() - .5) * 200,
+              y: petals.height * .49,
+              vx: (Math.random() - .5) * 7,
+              vy: -Math.random() * 7 - 2,
+              r: 0,
+              vr: (Math.random() - .5) * .3,
+              life: 1.5
+          });
+      }
+    };
+  </script>
+</body>
+</html>
