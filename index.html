@@ -7,9 +7,33 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap');
     *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;display:grid;place-items:center;overflow:hidden;background:#02080e;color:white;font-family:"DM Sans",sans-serif}
-    .app{width:min(100vw,470px);height:min(100vh,880px);min-height:620px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 94%,#565a2f,#162d2d 35%,#061621 78%);box-shadow:0 20px 80px #000}
-    @media(min-width:471px){.app{border:6px solid #172837;border-radius:28px}}
+    
+    /* MODIFICADO: Ajuste perfecto al 100% de la pantalla sin scroll */
+    body {
+        margin: 0;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: #02080e;
+        color: white;
+        font-family: "DM Sans", sans-serif;
+    }
+    
+    .app {
+        width: 100vw;
+        height: 100vh; /* Eliminado el min-height fijo que causaba el corte */
+        max-width: 470px;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(ellipse at 50% 94%, #565a2f, #162d2d 35%, #061621 78%);
+        box-shadow: 0 20px 80px #000;
+    }
+    
+    @media(min-width:471px) {
+        .app { border: 6px solid #172837; border-radius: 28px; height: 95vh; max-height: 880px; }
+    }
+    
     canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
     .home,.scene{position:absolute;inset:0}
     .home{z-index:5;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 46%,#213d51,#081521 63%);transition:.8s}
@@ -17,6 +41,7 @@
     .eyebrow,.headline small{color:#f9d66e;letter-spacing:3px;text-transform:uppercase;font-size:10px}
     .intro h1{font:700 clamp(37px,10vw,51px)/.98 "Playfair Display";margin:15px 20px 12px;text-shadow:0 3px 20px #000}
     .intro p{margin:0 0 30px;color:#dce7e6b8;font-size:14px}
+    
     .gift{position:relative;width:158px;height:121px;margin:0 auto 28px;filter:drop-shadow(0 16px 13px #0008);animation:float 2.8s ease-in-out infinite}
     .box{position:absolute;left:10px;right:10px;bottom:0;height:82px;border-radius:6px 6px 16px 16px;background:linear-gradient(115deg,#d99124,#ffd85a 48%,#eaa52c)}
     .ribbon{position:absolute;left:67px;width:24px;height:100%;z-index:2;background:linear-gradient(90deg,#fef6c2,#fffdf3,#e7b836)}
@@ -28,21 +53,36 @@
     .bow:after{right:0;transform:scaleX(-1) rotate(23deg)}
     button{font-family:"DM Sans";cursor:pointer}
     .open{border:0;border-radius:99px;padding:15px 24px;background:linear-gradient(130deg,#fff6b8,#f9c942);font-weight:700;font-size:15px;color:#17231e;box-shadow:0 12px 28px #0006}
+    
     .scene{opacity:0;transform:scale(1.08);pointer-events:none;transition:opacity .9s .28s,transform 1.1s .28s}
     .app.reveal .home{opacity:0;transform:scale(1.1);pointer-events:none}
     .app.reveal .lid{opacity:0;transform:rotate(-36deg) translate(-16px,-10px)}
     .app.reveal .scene{opacity:1;transform:none;pointer-events:auto}
-    .headline{position:absolute;z-index:4;top:4%;left:18px;right:18px;text-align:center}
-    .headline h2{margin:12px 0;font:700 clamp(36px,9vw,48px)/.98 "Playfair Display";color:#fff5bf;text-shadow:0 0 24px #e9b6319c}
-    .headline p{margin:0;color:#e6f0e9c4;font-size:14px}
-    .ground{position:absolute;bottom:-4%;left:-20%;width:140%;height:28%;border-radius:50% 50% 0 0;background:radial-gradient(ellipse at center,#4d6a32,#1a442c 48%,#0b2723 74%)}
     
-    .garden{position:absolute;z-index:2;bottom:-2%;left:50%;width:420px;height:520px;transform:translateX(-50%);display:flex;justify-content:center;align-items:flex-end;}
+    /* MODIFICADO: Texto adaptativo */
+    .headline{position:absolute;z-index:4;top:6vh;left:18px;right:18px;text-align:center}
+    .headline h2{margin:12px 0;font:700 clamp(28px, 8.5vw, 48px)/.98 "Playfair Display";color:#fff5bf;text-shadow:0 0 24px #e9b6319c}
+    .headline p{margin:0;color:#e6f0e9c4;font-size:14px}
+    
+    .ground{position:absolute;bottom:-4vh;left:-20%;width:140%;height:25vh;border-radius:50% 50% 0 0;background:radial-gradient(ellipse at center,#4d6a32,#1a442c 48%,#0b2723 74%)}
+    
+    /* MODIFICADO: Contenedor fluido */
+    .garden {
+        position: absolute;
+        z-index: 2;
+        bottom: 3vh; /* Siempre queda por encima del suelo */
+        left: 50%;
+        width: 100%;
+        max-width: 420px;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
     
     .flower-container {
         position: relative;
         width: 100%;
-        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -58,9 +98,9 @@
 
     .luz-fondo {
         position: absolute;
-        bottom: 35%;
-        width: 320px;
-        height: 320px;
+        bottom: 30%;
+        width: clamp(200px, 70vw, 320px);
+        height: clamp(200px, 70vw, 320px);
         background: radial-gradient(circle, rgba(255, 230, 80, 0.8) 0%, rgba(255, 200, 0, 0) 70%);
         border-radius: 50%;
         z-index: 1;
@@ -73,14 +113,15 @@
         animation: lightCinematic 4s 0.2s forwards, pulseLight 4s 4.2s infinite alternate ease-in-out;
     }
 
+    /* MODIFICADO: Escala matemática perfecta para la flor */
     .image-flower {
-        width: 350px; 
-        max-width: 100%;
+        width: clamp(220px, 75vw, 350px); 
+        max-height: 45vh; /* Evita que choque con el texto en celulares pequeños */
         object-fit: contain;
         z-index: 3;
         position: relative;
         filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
-        margin-bottom: -95px; 
+        margin-bottom: clamp(-95px, -18vw, -50px); /* El solapamiento con el tallo es perfecto en cualquier pantalla */
         cursor: pointer;
         transition: transform 0.3s;
     }
@@ -89,9 +130,11 @@
         transform: scale(1.03);
     }
 
+    /* MODIFICADO: Escala matemática perfecta para el tallo */
     .tallo {
-        width: 250px; 
-        height: 330px; 
+        width: clamp(140px, 50vw, 250px);
+        height: auto;
+        max-height: 35vh;
         z-index: 2;
         pointer-events: none;
     }
@@ -100,7 +143,7 @@
         animation: flowerDance 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards !important;
     }
 
-    .hint{position:absolute;z-index:4;bottom:4%;width:100%;text-align:center;color:#fff7c8d9;font-size:13px;animation:pulse 1.7s infinite; pointer-events:none;}
+    .hint{position:absolute;z-index:4;bottom:3vh;width:100%;text-align:center;color:#fff7c8d9;font-size:13px;animation:pulse 1.7s infinite; pointer-events:none;}
     .restart{position:absolute;z-index:5;right:16px;top:17px;border:1px solid #ffffff2c;border-radius:99px;padding:8px 11px;color:#fff;background:#ffffff12;font-size:11px;backdrop-filter:blur(5px)}
 
     @keyframes float{50%{transform:translateY(-10px) rotate(1deg)}}
@@ -109,12 +152,12 @@
     @keyframes appearCinematic {
         0% { 
             opacity: 0; 
-            transform: translateY(150px) scale(0.6); 
+            transform: translateY(15vh) scale(0.6); 
             filter: blur(20px) brightness(0.5);
         }
         40% {
             opacity: 0.8;
-            transform: translateY(-10px) scale(1.05);
+            transform: translateY(-2vh) scale(1.05);
             filter: blur(5px) brightness(1.3) drop-shadow(0 0 40px rgba(255, 230, 80, 1));
         }
         100% { 
@@ -132,7 +175,7 @@
 
     @keyframes bounceFloat {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
+        50% { transform: translateY(-2vh); }
     }
 
     @keyframes pulseLight {
@@ -152,7 +195,6 @@
   <main class="app" id="app">
     <canvas id="stars"></canvas>
     
-    <!-- Etiqueta HTML nativa asegurada para Vercel y móviles -->
     <audio id="musica-fondo" loop preload="auto">
       <source src="cancion.mp3" type="audio/mpeg">
     </audio>
@@ -186,7 +228,7 @@
           
           <img src="image_de7144.png" class="image-flower" id="magic-flower" alt="Flor Mágica Amarilla">
           
-          <svg class="tallo" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+          <svg class="tallo" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
               <defs>
                   <linearGradient id="talloGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stop-color="#1B5E20" />
@@ -218,23 +260,19 @@
     const magicFlower = document.querySelector('#magic-flower');
     const musicaFondo = document.getElementById('musica-fondo');
     
-    // Configurar volumen
-    musicaFondo.volume = 0.01;
+    musicaFondo.volume = 0.5;
 
-    // Función segura para forzar reproducción
     const intentarReproducir = () => {
         if (musicaFondo.paused) {
             musicaFondo.play().catch(e => console.warn("Esperando interacción táctil para reproducir."));
         }
     };
 
-    // 1. Al presionar el botón "Abrir regalo"
     document.querySelector('#open').addEventListener('click', () => {
         app.classList.add('reveal');
         intentarReproducir();
     });
     
-    // 2. Desbloqueo global de emergencia (cualquier clic o toque en la pantalla inicia la música)
     document.body.addEventListener('click', intentarReproducir, { once: true });
     document.body.addEventListener('touchstart', intentarReproducir, { once: true });
     
@@ -244,7 +282,6 @@
         musicaFondo.currentTime = 0; 
     });
     
-    // Partículas y canvas
     const stars = document.querySelector('#stars'), s = stars.getContext('2d'), 
           petals = document.querySelector('#petals'), p = petals.getContext('2d');
     let pts = [], bits = [];
@@ -266,7 +303,6 @@
     }
     draw();
     
-    // Al tocar la flor: baila, suelta chispas y fuerza el play de música
     magicFlower.addEventListener('click', (e) => {
       e.stopPropagation(); 
       intentarReproducir();
